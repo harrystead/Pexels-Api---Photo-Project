@@ -7,3 +7,16 @@ const more = document.querySelector(".more");
 let page = 1;
 let fetchLink;
 let currentSearch;
+
+//Event Listeners
+searchInput.addEventListener("input", updateInput);
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  currentSearch = searchValue;
+  searchPhotos(searchValue);
+});
+more.addEventListener("click", loadMore);
+
+function updateInput(e) {
+  searchValue = e.target.value;
+}
