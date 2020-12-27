@@ -61,3 +61,21 @@ async function fetchApi(url) {
     const data = await fetchApi(fetchLink);
     generatePictures(data);
   }
+
+  function clear() {
+    gallery.innerHTML = "";
+    searchInput.value = "";
+  }
+  
+  async function loadMore() {
+    page++;
+    if (currentSearch) {
+      fetchLink = `https://api.pexels.com/v1/search?query=${currentSearch}+query&per_page=15&page=${page}`;
+    } else {
+      fetchLink = `https://api.pexels.com/v1/curated?per_page=15&page=${page}`;
+    }
+    const data = await fetchApi(fetchLink);
+    generatePictures(data);
+  }
+  
+  curatedPhotos();
